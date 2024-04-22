@@ -1,7 +1,7 @@
 public class Radio {
 
     private int currentRadio;
-    public int currentVolume;
+    private int currentVolume;
 
     public int getCurrentRadio() {
         return currentRadio;
