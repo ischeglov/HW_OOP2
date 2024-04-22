@@ -18,7 +18,7 @@ public class Radio {
     }
 
     public void setNextRadio() {
-        if (currentRadio >= 9) {
+        if (currentRadio == 9) {
             setCurrentRadio(0);
         } else {
             currentRadio++;
@@ -39,5 +39,47 @@ public class Radio {
 
     public void setToMinRadio() {
         currentRadio = 0;
+    }
+
+    public int getCurrentVolume() {
+        return currentVolume;
+    }
+
+    public void setCurrentVolume(int currentVolume) {
+        if (currentVolume < 0) {
+            return;
+        }
+        if (currentVolume > 100) {
+            return;
+        }
+        this.currentVolume = currentVolume;
+    }
+
+    public void setToMaxVolume() {
+        currentVolume = 100;
+    }
+
+    public void setToMinVolume() {
+        currentVolume = 0;
+    }
+
+    public void setUpVolume() {
+        if (currentVolume < 100) {
+            currentVolume++;
+        } else {
+            currentVolume = 100;
+        }
+    }
+
+    public void setDownVolume() {
+        if (currentVolume < 100) {
+            currentVolume--;
+        }
+        if (currentVolume == 100) {
+            currentVolume--;
+        }
+        if (currentVolume < 0) {
+            currentVolume = 0;
+        }
     }
 }
