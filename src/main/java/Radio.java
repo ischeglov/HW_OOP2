@@ -1,3 +1,10 @@
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Radio {
 
     private int radioRange = 10;
@@ -9,27 +16,8 @@ public class Radio {
     private int minVolume = 0;
     private int currentVolume = minVolume;
 
-    public Radio() {
-    }
-
     public Radio(int radioRange) {
         maxCurrentRadio = radioRange - 1;
-    }
-
-    public int getRadioRange() {
-        return radioRange;
-    }
-
-    public int getMaxCurrentRadio() {
-        return maxCurrentRadio;
-    }
-
-    public int getMinCurrentRadio() {
-        return minCurrentRadio;
-    }
-
-    public int getCurrentRadio() {
-        return currentRadio;
     }
 
     public void setCurrentRadio(int currentRadio) {
@@ -56,10 +44,6 @@ public class Radio {
         } else {
             currentRadio--;
         }
-    }
-
-    public int getCurrentVolume() {
-        return currentVolume;
     }
 
     public void setCurrentVolume(int currentVolume) {
