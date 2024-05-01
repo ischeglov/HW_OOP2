@@ -15,6 +15,25 @@ class RadioTest {
     }
 
     @Test
+    void shouldSetConstrWithParameters() {
+        Radio radio = new Radio(30);
+
+        assertEquals(29, radio.getMaxCurrentRadio());
+        assertEquals(0, radio.getMinCurrentRadio());
+        assertEquals(0,radio.getCurrentRadio());
+    }
+
+    @Test
+    void shouldSetConstrWithoutParameters() {
+        Radio radio = new Radio();
+
+        assertEquals(10, radio.getRadioRange());
+        assertEquals(9, radio.getMaxCurrentRadio());
+        assertEquals(0, radio.getMinCurrentRadio());
+        assertEquals(0, radio.getCurrentRadio());
+    }
+
+    @Test
     void shouldSetCurrentRadio() {
         Radio radio = new Radio();
 
@@ -27,24 +46,12 @@ class RadioTest {
     }
 
     @Test
-    void shouldSetToMaxRadio() {
-        Radio radio = new Radio();
+    void shouldSetCurrentRadioSecond() {
+        Radio radio = new Radio(30);
 
-        radio.setToMaxRadio();
+        radio.setCurrentRadio(20);
 
-        int expected = 9;
-        int actual = radio.getCurrentRadio();
-
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void shouldSetToMinRadio() {
-        Radio radio = new Radio();
-
-        radio.setToMinRadio();
-
-        int expected = 0;
+        int expected = 20;
         int actual = radio.getCurrentRadio();
 
         assertEquals(expected, actual);
@@ -52,9 +59,9 @@ class RadioTest {
 
     @Test
     void shouldNotSetCurrentRadioAboveMax() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(30);
 
-        radio.setCurrentRadio(10);
+        radio.setCurrentRadio(30);
 
         int expected = 0;
         int actual = radio.getCurrentRadio();
@@ -64,7 +71,7 @@ class RadioTest {
 
     @Test
     void shouldNotSetCurrentRadioBelowMin() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(30);
 
         radio.setCurrentRadio(-1);
 
@@ -76,7 +83,7 @@ class RadioTest {
 
     @Test
     void shouldSetNextRadio() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(30);
         radio.setCurrentRadio(5);
 
         radio.setNextRadio();
@@ -89,8 +96,8 @@ class RadioTest {
 
     @Test
     void shouldSetNextRadioMax() {
-        Radio radio = new Radio();
-        radio.setCurrentRadio(9);
+        Radio radio = new Radio(30);
+        radio.setCurrentRadio(29);
 
         radio.setNextRadio();
 
@@ -102,7 +109,7 @@ class RadioTest {
 
     @Test
     void shouldSetNextRadioMin() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(30);
         radio.setCurrentRadio(0);
 
         radio.setNextRadio();
@@ -115,8 +122,8 @@ class RadioTest {
 
     @Test
     void shouldSetNextRadioMoreMax() {
-        Radio radio = new Radio();
-        radio.setCurrentRadio(10);
+        Radio radio = new Radio(30);
+        radio.setCurrentRadio(30);
 
         radio.setNextRadio();
 
@@ -128,7 +135,7 @@ class RadioTest {
 
     @Test
     void shouldSetNextRadioMoreMin() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(30);
         radio.setCurrentRadio(-1);
 
         radio.setNextRadio();
@@ -141,7 +148,7 @@ class RadioTest {
 
     @Test
     void shouldSetPervRadio() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(30);
         radio.setCurrentRadio(5);
 
         radio.setPervRadio();
@@ -154,12 +161,12 @@ class RadioTest {
 
     @Test
     void shouldSetPervRadioMax() {
-        Radio radio = new Radio();
-        radio.setCurrentRadio(9);
+        Radio radio = new Radio(30);
+        radio.setCurrentRadio(29);
 
         radio.setPervRadio();
 
-        int expected = 8;
+        int expected = 28;
         int actual = radio.getCurrentRadio();
 
         assertEquals(expected, actual);
@@ -167,12 +174,12 @@ class RadioTest {
 
     @Test
     void shouldSetPervRadioMin() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(30);
         radio.setCurrentRadio(0);
 
         radio.setPervRadio();
 
-        int expected = 9;
+        int expected = 29;
         int actual = radio.getCurrentRadio();
 
         assertEquals(expected, actual);
@@ -180,12 +187,12 @@ class RadioTest {
 
     @Test
     void shouldSetPervRadioMoreMax() {
-        Radio radio = new Radio();
-        radio.setCurrentRadio(10);
+        Radio radio = new Radio(30);
+        radio.setCurrentRadio(30);
 
         radio.setPervRadio();
 
-        int expected = 9;
+        int expected = 29;
         int actual = radio.getCurrentRadio();
 
         assertEquals(expected, actual);
@@ -193,12 +200,12 @@ class RadioTest {
 
     @Test
     void shouldSetPervRadioMoreMin() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(30);
         radio.setCurrentRadio(-1);
 
         radio.setPervRadio();
 
-        int expected = 9;
+        int expected = 29;
         int actual = radio.getCurrentRadio();
 
         assertEquals(expected, actual);
@@ -211,30 +218,6 @@ class RadioTest {
         radio.setCurrentVolume(50);
 
         int expected = 50;
-        int actual = radio.getCurrentVolume();
-
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void shouldSetToMaxVolume() {
-        Radio radio = new Radio();
-
-        radio.setToMaxVolume();
-
-        int expected = 100;
-        int actual = radio.getCurrentVolume();
-
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void shouldSetToMinVolume() {
-        Radio radio = new Radio();
-
-        radio.setToMinVolume();
-
-        int expected = 0;
         int actual = radio.getCurrentVolume();
 
         assertEquals(expected, actual);
