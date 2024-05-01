@@ -1,44 +1,61 @@
 public class Radio {
 
-    private int currentRadio;
-    private int currentVolume;
+    private int radioRange = 10;
+    private int maxCurrentRadio = radioRange - 1;
+    private int minCurrentRadio = 0;
+    private int currentRadio = minCurrentRadio;
+
+    private int maxVolume = 100;
+    private int minVolume = 0;
+    private int currentVolume = minVolume;
+
+    public Radio() {
+    }
+
+    public Radio(int radioRange) {
+        maxCurrentRadio = radioRange - 1;
+    }
+
+    public int getRadioRange() {
+        return radioRange;
+    }
+
+    public int getMaxCurrentRadio() {
+        return maxCurrentRadio;
+    }
+
+    public int getMinCurrentRadio() {
+        return minCurrentRadio;
+    }
 
     public int getCurrentRadio() {
         return currentRadio;
     }
 
     public void setCurrentRadio(int currentRadio) {
-        if (currentRadio < 0) {
+        if (currentRadio < minCurrentRadio) {
             return;
         }
-        if (currentRadio > 9) {
+        if (currentRadio > maxCurrentRadio) {
             return;
         }
         this.currentRadio = currentRadio;
     }
 
     public void setNextRadio() {
-        if (currentRadio == 9) {
-            setCurrentRadio(0);
+        if (currentRadio == maxCurrentRadio) {
+            setCurrentRadio(minCurrentRadio);
         } else {
             currentRadio++;
         }
     }
 
     public void setPervRadio() {
-        if (currentRadio == 0) {
-            setCurrentRadio(9);
+        if (currentRadio == minCurrentRadio) {
+            setCurrentRadio(maxCurrentRadio);
         } else {
             currentRadio--;
         }
-    }
-
-    public void setToMaxRadio() {
-        currentRadio = 9;
-    }
-
-    public void setToMinRadio() {
-        currentRadio = 0;
     }
 
     public int getCurrentVolume() {
@@ -46,40 +63,32 @@ public class Radio {
     }
 
     public void setCurrentVolume(int currentVolume) {
-        if (currentVolume < 0) {
+        if (currentVolume < minVolume) {
             return;
         }
-        if (currentVolume > 100) {
+        if (currentVolume > maxVolume) {
             return;
         }
         this.currentVolume = currentVolume;
     }
 
-    public void setToMaxVolume() {
-        currentVolume = 100;
-    }
-
-    public void setToMinVolume() {
-        currentVolume = 0;
-    }
-
     public void setUpVolume() {
-        if (currentVolume < 100) {
+        if (currentVolume < maxVolume) {
             currentVolume++;
         } else {
-            currentVolume = 100;
+            currentVolume = maxVolume;
         }
     }
 
     public void setDownVolume() {
-        if (currentVolume < 100) {
+        if (currentVolume < maxVolume) {
             currentVolume--;
         }
-        if (currentVolume == 100) {
+        if (currentVolume == maxVolume) {
             currentVolume--;
         }
-        if (currentVolume < 0) {
-            currentVolume = 0;
+        if (currentVolume < minVolume) {
+            currentVolume = minVolume;
         }
     }
 }
